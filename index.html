@@ -673,6 +673,112 @@
             border-top: 1px solid rgba(255,255,255,0.1);
         }
 
+        /* Modal Popup */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal {
+            background: var(--dark);
+            border: 2px solid var(--accent-blue);
+            border-radius: 16px;
+            padding: 2.5rem;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--gray);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--white);
+        }
+
+        .modal h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .modal p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .email-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid var(--accent-blue);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .email-box .email-address {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            color: var(--highlight);
+            word-break: break-all;
+        }
+
+        .copy-btn {
+            background: var(--highlight);
+            color: var(--dark);
+            border: none;
+            padding: 12px 30px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--white);
+            transform: scale(1.05);
+        }
+
+        .copy-btn.copied {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .modal-note {
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .modal-note strong {
+            color: var(--ice-blue);
+        }
+
         /* Responsive */
         @media (max-width: 768px) {
             nav {
@@ -726,7 +832,7 @@
                 <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23e8f4fc'/%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='%234a90d9' stroke-width='1' opacity='0.5'/%3E%3Cellipse cx='50' cy='50' rx='35' ry='15' fill='none' stroke='%234a90d9' stroke-width='1' opacity='0.5'/%3E%3Cpath d='M20 35 Q50 20 80 35 L80 55 Q50 45 20 55 Z' fill='%231e3a5f'/%3E%3Cpath d='M25 40 Q50 28 75 40 L75 52 Q50 42 25 52 Z' fill='%232d5a87'/%3E%3Ccircle cx='50' cy='50' r='25' fill='none' stroke='%234a90d9' stroke-width='1' opacity='0.5'/%3E%3C/svg%3E" alt="Legacy Line Charts Logo">
                 <span>Legacy Line Charts</span>
             </div>
-            <a href="mailto:legacylinecharts@gmail.com" class="nav-cta">Get Started</a>
+            <a href="#" onclick="openModal(); return false;" class="nav-cta">Get Started</a>
         </div>
     </nav>
 
@@ -738,7 +844,7 @@
             <p class="hero-tagline">NHL-Style Scouting Reports Made Easy for MSHSL Coaches</p>
             <div class="hero-price">$125</div>
             <p class="hero-price-note">2025 Soft Launch Special — Full season including playoffs</p>
-            <a href="mailto:legacylinecharts@gmail.com?subject=Legacy Line Charts Inquiry" class="hero-cta">Get Your Team Set Up →</a>
+            <a href="#" onclick="openModal(); return false;" class="hero-cta">Get Your Team Set Up →</a>
         </div>
     </section>
 
@@ -892,7 +998,7 @@
                     <span class="payment-method">📱 Venmo</span>
                 </div>
                 <p style="color: var(--gray); font-size: 0.9rem;">No checks or credit cards</p>
-                <a href="mailto:legacylinecharts@gmail.com?subject=Sign Up for Legacy Line Charts&body=Hi! I'm interested in Legacy Line Charts for my team.%0A%0ATeam Name: %0APayment Preference (Cash or Venmo): " class="cta-btn">Get Started Today →</a>
+                <a href="#" onclick="openModal(); return false;" class="cta-btn">Get Started Today →</a>
             </div>
         </div>
     </section>
@@ -919,5 +1025,63 @@
             </p>
         </div>
     </footer>
+<!-- Email Modal -->
+    <div class="modal-overlay" id="emailModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeModal()">✕</button>
+            <h3>📧 Contact Us</h3>
+            <p>Copy our email address and send us a message!</p>
+            <div class="email-box">
+                <span class="email-address" id="emailAddress">legacylinecharts@gmail.com</span>
+            </div>
+            <button class="copy-btn" id="copyBtn" onclick="copyEmail()">📋 Copy Email Address</button>
+            <div class="modal-note">
+                <strong>Include in your email:</strong><br>
+                • Your team name<br>
+                • Payment preference (Cash or Venmo)
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('emailModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('emailModal').classList.remove('active');
+            // Reset button text
+            const btn = document.getElementById('copyBtn');
+            btn.textContent = '📋 Copy Email Address';
+            btn.classList.remove('copied');
+        }
+
+        function copyEmail() {
+            const email = document.getElementById('emailAddress').textContent;
+            navigator.clipboard.writeText(email).then(function() {
+                const btn = document.getElementById('copyBtn');
+                btn.textContent = '✓ Copied!';
+                btn.classList.add('copied');
+                setTimeout(function() {
+                    btn.textContent = '📋 Copy Email Address';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('emailModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
