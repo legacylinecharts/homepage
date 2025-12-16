@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legacy Line Charts - NHL-Style Scouting Reports for MSHSL Coaches</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #1e3a5f;
+            --secondary-blue: #2d5a87;
+            --accent-blue: #4a90d9;
+            --ice-blue: #e8f4fc;
+            --highlight: #ffd700;
+            --dark: #0d1b2a;
+            --white: #ffffff;
+            --gray: #6b7c93;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--dark);
+            color: var(--white);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* Ice texture overlay */
+        .ice-texture {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(74, 144, 217, 0.03) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(74, 144, 217, 0.03) 0%, transparent 50%);
+            z-index: 0;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(13, 27, 42, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            border-bottom: 2px solid var(--accent-blue);
+        }
+
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .nav-logo img {
+            height: 45px;
+            width: 45px;
+            border-radius: 50%;
+        }
+
+        .nav-logo span {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--white);
+            letter-spacing: 0.05em;
+        }
+
+        .nav-cta {
+            background: var(--highlight);
+            color: var(--dark);
+            padding: 10px 24px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            background: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 2rem 80px;
+            position: relative;
+            background: 
+                linear-gradient(135deg, var(--dark) 0%, var(--primary-blue) 50%, var(--secondary-blue) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234a90d9' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            opacity: 0.5;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+        }
+
+        .hero-logo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            box-shadow: 0 0 60px rgba(74, 144, 217, 0.4);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 1rem;
+            line-height: 1.1;
+            text-shadow: 0 4px 30px rgba(0,0,0,0.3);
+        }
+
+        .hero h1 span {
+            color: var(--highlight);
+        }
+
+        .hero-tagline {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            color: var(--ice-blue);
+            margin-bottom: 2.5rem;
+            font-weight: 400;
+        }
+
+        .hero-price {
+            display: inline-block;
+            background: var(--highlight);
+            color: var(--dark);
+            padding: 1rem 2.5rem;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 0 30px 10px rgba(255, 215, 0, 0.2); }
+        }
+
+        .hero-price-note {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+
+        .hero-cta {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--white);
+            padding: 16px 40px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+        }
+
+        .hero-cta:hover {
+            background: var(--white);
+            color: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 40px rgba(74, 144, 217, 0.3);
+        }
+
+        /* Section Styling */
+        section {
+            padding: 80px 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .section-title span {
+            color: var(--highlight);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Video Section */
+        .video-section {
+            background: var(--primary-blue);
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 3px solid var(--accent-blue);
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* How It Works */
+        .how-it-works {
+            background: linear-gradient(180deg, var(--dark) 0%, var(--primary-blue) 100%);
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .step {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(74, 144, 217, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            border-color: var(--highlight);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.1);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--highlight);
+            color: var(--dark);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .step p {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+
+        /* Sample Reports */
+        .samples {
+            background: var(--secondary-blue);
+        }
+
+        .sample-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .sample-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .sample-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        .sample-preview {
+            height: 280px;
+            background: var(--ice-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sample-preview::after {
+            content: 'SAMPLE';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: var(--highlight);
+            color: var(--dark);
+            padding: 5px 40px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            transform: rotate(45deg);
+        }
+
+        .sample-preview img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 4px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .sample-info {
+            padding: 1.5rem;
+            background: var(--dark);
+        }
+
+        .sample-info h3 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sample-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .sample-btn {
+            display: inline-block;
+            background: var(--accent-blue);
+            color: var(--white);
+            padding: 10px 20px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .sample-btn:hover {
+            background: var(--highlight);
+            color: var(--dark);
+        }
+
+        /* Users/Social Proof */
+        .users {
+            background: var(--dark);
+            text-align: center;
+        }
+
+        .user-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .user-team {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(74, 144, 217, 0.3);
+            padding: 1.5rem 2.5rem;
+            border-radius: 8px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            color: var(--ice-blue);
+            transition: all 0.3s ease;
+        }
+
+        .user-team:hover {
+            border-color: var(--highlight);
+            color: var(--highlight);
+        }
+
+        .more-teams {
+            color: var(--highlight);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            margin-top: 2rem;
+        }
+
+        /* Requirements */
+        .requirements {
+            background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark) 100%);
+        }
+
+        .req-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .req-card {
+            background: rgba(0,0,0,0.3);
+            border-left: 4px solid var(--accent-blue);
+            padding: 1.5rem;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .req-card.important {
+            border-left-color: var(--highlight);
+        }
+
+        .req-card h4 {
+            font-size: 1rem;
+            color: var(--highlight);
+            margin-bottom: 0.5rem;
+        }
+
+        .req-card p {
+            color: var(--ice-blue);
+            font-size: 0.95rem;
+        }
+
+        /* Tips Section */
+        .tips {
+            background: var(--secondary-blue);
+        }
+
+        .tip-list {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .tip {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            background: rgba(0,0,0,0.2);
+            padding: 1.5rem;
+            border-radius: 8px;
+        }
+
+        .tip-icon {
+            background: var(--highlight);
+            color: var(--dark);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .tip-content h4 {
+            font-size: 1rem;
+            color: var(--white);
+            margin-bottom: 0.3rem;
+            text-transform: none;
+        }
+
+        .tip-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        /* Pricing CTA */
+        .pricing-cta {
+            background: linear-gradient(135deg, var(--dark) 0%, var(--primary-blue) 100%);
+            text-align: center;
+        }
+
+        .pricing-box {
+            background: rgba(255,255,255,0.05);
+            border: 2px solid var(--highlight);
+            border-radius: 16px;
+            padding: 3rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .pricing-box h2 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-box .price {
+            font-family: 'Oswald', sans-serif;
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--highlight);
+            margin: 1rem 0;
+        }
+
+        .pricing-box .price-detail {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        .payment-methods {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 1.5rem 0;
+            flex-wrap: wrap;
+        }
+
+        .payment-method {
+            background: rgba(255,255,255,0.1);
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            color: var(--ice-blue);
+        }
+
+        .pricing-box .cta-btn {
+            display: inline-block;
+            background: var(--highlight);
+            color: var(--dark);
+            padding: 18px 50px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 6px;
+            margin-top: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .pricing-box .cta-btn:hover {
+            background: var(--white);
+            transform: scale(1.05);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            border-top: 2px solid var(--primary-blue);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .footer-contact {
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-contact a {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        .footer-contact a:hover {
+            color: var(--highlight);
+        }
+
+        .footer-address {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-top: 1rem;
+        }
+
+        .footer-copyright {
+            color: var(--gray);
+            font-size: 0.85rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.8rem 1rem;
+            }
+
+            .nav-logo span {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 1rem 60px;
+            }
+
+            .hero-logo {
+                width: 100px;
+                height: 100px;
+            }
+
+            .hero-price {
+                font-size: 1.4rem;
+                padding: 0.8rem 1.5rem;
+            }
+
+            section {
+                padding: 60px 1rem;
+            }
+
+            .pricing-box {
+                padding: 2rem 1.5rem;
+            }
+
+            .pricing-box .price {
+                font-size: 3rem;
+            }
+
+            .payment-methods {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ice-texture"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="nav-logo">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23e8f4fc'/%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='%234a90d9' stroke-width='1' opacity='0.5'/%3E%3Cellipse cx='50' cy='50' rx='35' ry='15' fill='none' stroke='%234a90d9' stroke-width='1' opacity='0.5'/%3E%3Cpath d='M20 35 Q50 20 80 35 L80 55 Q50 45 20 55 Z' fill='%231e3a5f'/%3E%3Cpath d='M25 40 Q50 28 75 40 L75 52 Q50 42 25 52 Z' fill='%232d5a87'/%3E%3Ccircle cx='50' cy='50' r='25' fill='none' stroke='%234a90d9' stroke-width='1' opacity='0.5'/%3E%3C/svg%3E" alt="Legacy Line Charts Logo">
+                <span>Legacy Line Charts</span>
+            </div>
+            <a href="mailto:legacylinecharts@gmail.com" class="nav-cta">Get Started</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23e8f4fc'/%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='%234a90d9' stroke-width='1.5' opacity='0.6'/%3E%3Cellipse cx='50' cy='50' rx='35' ry='15' fill='none' stroke='%234a90d9' stroke-width='1.5' opacity='0.6'/%3E%3Cpath d='M20 35 Q50 20 80 35 L80 55 Q50 45 20 55 Z' fill='%231e3a5f'/%3E%3Cpath d='M25 40 Q50 28 75 40 L75 52 Q50 42 25 52 Z' fill='%232d5a87'/%3E%3Ccircle cx='50' cy='50' r='25' fill='none' stroke='%234a90d9' stroke-width='1.5' opacity='0.6'/%3E%3Cellipse cx='50' cy='50' rx='15' ry='35' fill='none' stroke='%234a90d9' stroke-width='1' opacity='0.4'/%3E%3C/svg%3E" alt="Legacy Line Charts" class="hero-logo">
+            <h1>Legacy <span>Line Charts</span></h1>
+            <p class="hero-tagline">NHL-Style Scouting Reports Made Easy for MSHSL Coaches</p>
+            <div class="hero-price">$125</div>
+            <p class="hero-price-note">2025 Soft Launch Special — Full season including playoffs</p>
+            <a href="mailto:legacylinecharts@gmail.com?subject=Legacy Line Charts Inquiry" class="hero-cta">Get Your Team Set Up →</a>
+        </div>
+    </section>
+
+    <!-- Video Demo Section -->
+    <section class="video-section">
+        <div class="container">
+            <h2 class="section-title">See It <span>In Action</span></h2>
+            <p class="section-subtitle">Watch how easy it is to create professional scouting reports</p>
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/jVwdhdyMMyQ?rel=0&loop=1&playlist=jVwdhdyMMyQ" title="Legacy Line Charts Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Free Trial Offer -->
+    <section class="free-trial" style="background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%); text-align: center; padding: 50px 2rem;">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 1rem;">🏒 Want Your First Game <span>Free?</span></h2>
+            <p style="font-size: 1.3rem; color: var(--ice-blue); max-width: 600px; margin: 0 auto;">
+                Just ask! We know coaches are trustworthy — they only leave if they get fired 😂
+            </p>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How It <span>Works</span></h2>
+            <p class="section-subtitle">Three simple steps to professional game-day reports</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Contact Us</h3>
+                    <p>Email legacylinecharts@gmail.com with your team name and payment preference (mailed cash or Venmo)</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>We Build Your Site</h3>
+                    <p>We create a custom Legacy Line Charts website with your Legacy Hockey career stats and team info already built in</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Start Scouting</h3>
+                    <p>Import opponent data from Legacy Hockey and generate professional line charts for your next game</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sample Reports -->
+    <section class="samples">
+        <div class="container">
+            <h2 class="section-title">Sample <span>Reports</span></h2>
+            <p class="section-subtitle">Professional two-page scouting reports ready for game day</p>
+            <div class="sample-grid">
+                <div class="sample-card">
+                    <div class="sample-preview">
+                        <div style="text-align: center; color: var(--dark);">
+                            <div style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">🏒</div>
+                            <div style="font-family: 'Oswald', sans-serif; font-size: 1.2rem; font-weight: 600;">DELANO TIGERS</div>
+                            <div style="font-size: 0.9rem; color: var(--gray);">vs Buffalo Bison</div>
+                            <div style="font-size: 0.8rem; color: var(--gray); margin-top: 0.5rem;">Nov 29, 2025</div>
+                        </div>
+                    </div>
+                    <div class="sample-info">
+                        <h3>Delano Tigers vs Buffalo Bison</h3>
+                        <p>Complete line chart with career stats, line combinations, and coaching info</p>
+                        <a href="Delano_at_Buffalo_11-29-25_v2.pdf" target="_blank" class="sample-btn">View PDF →</a>
+                    </div>
+                </div>
+                <div class="sample-card">
+                    <div class="sample-preview">
+                        <div style="text-align: center; color: var(--dark);">
+                            <div style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">🏒</div>
+                            <div style="font-family: 'Oswald', sans-serif; font-size: 1.2rem; font-weight: 600;">EGF GREEN WAVE</div>
+                            <div style="font-size: 0.9rem; color: var(--gray);">vs Warroad Warriors</div>
+                            <div style="font-size: 0.8rem; color: var(--gray); margin-top: 0.5rem;">Dec 2, 2025</div>
+                        </div>
+                    </div>
+                    <div class="sample-info">
+                        <h3>East Grand Forks vs Warroad</h3>
+                        <p>Two-page report with opponent roster and pre-game notes section</p>
+                        <a href="EGF_at_Warroad_12-2-25_Legacy_Line_Charts.pdf" target="_blank" class="sample-btn">View PDF →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Current Users -->
+    <section class="users">
+        <div class="container">
+            <h2 class="section-title">Trusted By <span>MSHSL Programs</span></h2>
+            <div class="user-logos">
+                <div class="user-team">East Grand Forks Green Wave</div>
+                <div class="user-team">East Ridge Raptors</div>
+                <div class="user-team">Delano Tigers</div>
+            </div>
+            <p class="more-teams">+ More Teams Joining Each Day</p>
+        </div>
+    </section>
+
+    <!-- Requirements -->
+    <section class="requirements">
+        <div class="container">
+            <h2 class="section-title">System <span>Requirements</span></h2>
+            <p class="section-subtitle">Simple setup — designed for coaches, not tech experts</p>
+            <div class="req-grid">
+                <div class="req-card important">
+                    <h4>Computer Required</h4>
+                    <p>Works on desktop or laptop computers. Does not work on tablets.</p>
+                </div>
+                <div class="req-card">
+                    <h4>Google Chrome Recommended</h4>
+                    <p>Best performance and compatibility with Chrome browser.</p>
+                </div>
+                <div class="req-card">
+                    <h4>Legacy Hockey Account</h4>
+                    <p>Access to legacy.hockey for importing opponent data.</p>
+                </div>
+                <div class="req-card">
+                    <h4>Internet Connection</h4>
+                    <p>Web-based application — no software to install.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Tips -->
+    <section class="tips">
+        <div class="container">
+            <h2 class="section-title">Quick <span>Tips</span></h2>
+            <div class="tip-list">
+                <div class="tip">
+                    <div class="tip-icon">🔑</div>
+                    <div class="tip-content">
+                        <h4>Login to Legacy Hockey — But NOT in Edit Mode</h4>
+                        <p>Make sure you're logged into your Legacy Hockey page, but DO NOT be in edit mode. You can see this explained in the <a href="https://youtu.be/jVwdhdyMMyQ" target="_blank" style="color: var(--highlight);">first 2 seconds of the demo video</a>.</p>
+                    </div>
+                </div>
+                <div class="tip">
+                    <div class="tip-icon">📋</div>
+                    <div class="tip-content">
+                        <h4>Work Left to Right</h4>
+                        <p>Complete the LLC buttons from left to right, starting with "Import Next Game Data" for the smoothest workflow.</p>
+                    </div>
+                </div>
+                <div class="tip">
+                    <div class="tip-icon">✂️</div>
+                    <div class="tip-content">
+                        <h4>Easy Logo Import</h4>
+                        <p>Opponent logos are easiest to add via screenshot. Use Snipping Tool to capture their logo from Legacy Hockey, then click "Paste from Clipboard."</p>
+                    </div>
+                </div>
+                <div class="tip">
+                    <div class="tip-icon">📄</div>
+                    <div class="tip-content">
+                        <h4>Print-Ready Output</h4>
+                        <p>Reports are designed to print perfectly on two pages — ready for your clipboard on game day.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing CTA -->
+    <section class="pricing-cta">
+        <div class="container">
+            <div class="pricing-box">
+                <h2>2025 Soft Launch Special</h2>
+                <div class="price">$125</div>
+                <p class="price-detail">Full 2025-26 season including playoffs</p>
+                <div class="payment-methods">
+                    <span class="payment-method">💵 Cash (Mailed)</span>
+                    <span class="payment-method">📱 Venmo</span>
+                </div>
+                <p style="color: var(--gray); font-size: 0.9rem;">No checks or credit cards</p>
+                <a href="mailto:legacylinecharts@gmail.com?subject=Sign Up for Legacy Line Charts&body=Hi! I'm interested in Legacy Line Charts for my team.%0A%0ATeam Name: %0APayment Preference (Cash or Venmo): " class="cta-btn">Get Started Today →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">Legacy Line Charts</div>
+            <p class="footer-contact">
+                <a href="mailto:legacylinecharts@gmail.com">legacylinecharts@gmail.com</a>
+            </p>
+            <p class="footer-address">
+                Legacy Line Charts<br>
+                1507 5th Street SW<br>
+                Delano, MN 55328
+            </p>
+            <p class="footer-copyright">
+                © 2025 Legacy Line Charts. All rights reserved.<br>
+                Designed for MSHSL hockey coaches.
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
