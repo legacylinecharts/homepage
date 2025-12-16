@@ -417,6 +417,27 @@
             color: var(--dark);
         }
 
+        .sample-drive-btn {
+            display: inline-block;
+            background: var(--highlight);
+            color: var(--dark);
+            padding: 20px 40px;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(255, 215, 0, 0.3);
+        }
+
+        .sample-drive-btn:hover {
+            background: var(--white);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(255, 215, 0, 0.4);
+        }
+
         /* Users/Social Proof */
         .users {
             background: var(--dark);
@@ -772,37 +793,13 @@
         <div class="container">
             <h2 class="section-title">Sample <span>Reports</span></h2>
             <p class="section-subtitle">Professional two-page scouting reports ready for game day</p>
-            <div class="sample-grid">
-                <div class="sample-card">
-                    <div class="sample-preview">
-                        <div style="text-align: center; color: var(--dark);">
-                            <div style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">🏒</div>
-                            <div style="font-family: 'Oswald', sans-serif; font-size: 1.2rem; font-weight: 600;">DELANO TIGERS</div>
-                            <div style="font-size: 0.9rem; color: var(--gray);">vs Buffalo Bison</div>
-                            <div style="font-size: 0.8rem; color: var(--gray); margin-top: 0.5rem;">Nov 29, 2025</div>
-                        </div>
-                    </div>
-                    <div class="sample-info">
-                        <h3>Delano Tigers vs Buffalo Bison</h3>
-                        <p>Complete line chart with career stats, line combinations, and coaching info</p>
-                        <a href="Delano_at_Buffalo_11-29-25_v2.pdf" target="_blank" class="sample-btn">View PDF →</a>
-                    </div>
-                </div>
-                <div class="sample-card">
-                    <div class="sample-preview">
-                        <div style="text-align: center; color: var(--dark);">
-                            <div style="font-family: 'Oswald', sans-serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 0.5rem;">🏒</div>
-                            <div style="font-family: 'Oswald', sans-serif; font-size: 1.2rem; font-weight: 600;">EGF GREEN WAVE</div>
-                            <div style="font-size: 0.9rem; color: var(--gray);">vs Warroad Warriors</div>
-                            <div style="font-size: 0.8rem; color: var(--gray); margin-top: 0.5rem;">Dec 2, 2025</div>
-                        </div>
-                    </div>
-                    <div class="sample-info">
-                        <h3>East Grand Forks vs Warroad</h3>
-                        <p>Two-page report with opponent roster and pre-game notes section</p>
-                        <a href="EGF_at_Warroad_12-2-25_Legacy_Line_Charts.pdf" target="_blank" class="sample-btn">View PDF →</a>
-                    </div>
-                </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="https://drive.google.com/drive/folders/1l6j9Q60tR5nXds57k4-tpJeKOVnPj_Jl?usp=sharing" target="_blank" class="sample-drive-btn">
+                    📁 View Sample Reports on Google Drive →
+                </a>
+                <p style="color: var(--ice-blue); margin-top: 1.5rem; font-size: 1rem;">
+                    See real game-day reports from Delano Tigers, East Grand Forks Green Wave, and more
+                </p>
             </div>
         </div>
     </section>
