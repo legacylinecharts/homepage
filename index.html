@@ -469,6 +469,45 @@
             color: var(--highlight);
         }
 
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .team-card {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 1.2rem 1.5rem;
+            border-radius: 12px;
+            border: 2px solid;
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 5px;
+        }
+
+        .team-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.03em;
+        }
+
         .more-teams {
             color: var(--highlight);
             font-family: 'Oswald', sans-serif;
@@ -854,7 +893,7 @@
             <h2 class="section-title">See It <span>In Action</span></h2>
             <p class="section-subtitle">Less than 90 seconds... Watch how easy it is to create professional scouting reports</p>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/jVwdhdyMMyQ?rel=0&loop=1&playlist=jVwdhdyMMyQ&autoplay=1&mute=1" title="Legacy Line Charts Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/xvQQGjxoh2U?rel=0&loop=1&playlist=xvQQGjxoh2U&autoplay=1&mute=1" title="Legacy Line Charts Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
         </div>
     </section>
@@ -914,10 +953,31 @@
     <section class="users">
         <div class="container">
             <h2 class="section-title">Trusted By <span>MSHSL Programs</span></h2>
-            <div class="user-logos">
-                <div class="user-team">East Grand Forks Green Wave</div>
-                <div class="user-team">East Ridge Raptors</div>
-                <div class="user-team">Delano Tigers</div>
+            <div class="team-grid">
+                <div class="team-card" style="border-color: #007800; background: linear-gradient(135deg, rgba(0,120,0,0.2) 0%, rgba(204,0,0,0.1) 100%);">
+                    <img src="https://cdn2.sportngin.com/attachments/team/e494-151779249/east-grand-forks-hockey_large_square.png" alt="East Grand Forks Green Wave" class="team-logo">
+                    <span class="team-name" style="color: #007800;">East Grand Forks Green Wave</span>
+                </div>
+                <div class="team-card" style="border-color: #C5B358; background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(197,179,88,0.2) 100%);">
+                    <img src="https://cdn1.sportngin.com/attachments/team/3d12-151942489/1east-ridge-raptors-hockey_large_square_large_square.png" alt="East Ridge Raptors" class="team-logo">
+                    <span class="team-name" style="color: #C5B358;">East Ridge Raptors</span>
+                </div>
+                <div class="team-card" style="border-color: #FC6418; background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(252,100,24,0.2) 100%);">
+                    <img src="https://cdn3.sportngin.com/attachments/team/5112-152073362/1delano-tigers-hockey_large_square_large_square.png" alt="Delano Tigers" class="team-logo">
+                    <span class="team-name" style="color: #FC6418;">Delano Tigers</span>
+                </div>
+                <div class="team-card" style="border-color: #0D358D; background: linear-gradient(135deg, rgba(13,53,141,0.3) 0%, rgba(255,250,250,0.1) 100%);">
+                    <img src="https://cdn3.sportngin.com/attachments/team/d019-151710402/hibbing-chisholm-bluejackets-hockey_large_square.png" alt="Hibbing/Chisholm Bluejackets" class="team-logo">
+                    <span class="team-name" style="color: #0D358D; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Hibbing/Chisholm Bluejackets</span>
+                </div>
+                <div class="team-card" style="border-color: #B21E23; background: linear-gradient(135deg, rgba(178,30,35,0.3) 0%, rgba(0,0,0,0.2) 100%);">
+                    <img src="https://cdn2.sportngin.com/attachments/team/a7b1-152073448/1new-prague-trojans-hockey_large_square_large_square.png" alt="New Prague Trojans" class="team-logo">
+                    <span class="team-name" style="color: #B21E23;">New Prague Trojans</span>
+                </div>
+                <div class="team-card" style="border-color: #00A302; background: linear-gradient(135deg, rgba(0,0,102,0.3) 0%, rgba(0,163,2,0.2) 100%);">
+                    <img src="https://cdn2.sportngin.com/attachments/team/f4a2-199862227/R-with-Stick-Logo_large_square.png" alt="Rosemount Irish" class="team-logo">
+                    <span class="team-name" style="color: #00A302;">Rosemount Irish</span>
+                </div>
             </div>
             <p class="more-teams">+ More Teams Joining Each Day</p>
         </div>
@@ -958,7 +1018,7 @@
                     <div class="tip-icon">🔑</div>
                     <div class="tip-content">
                         <h4>Login to Legacy Hockey — But NOT in Edit Mode</h4>
-                        <p>Make sure you're logged into your Legacy Hockey page, but DO NOT be in edit mode. You can see this explained in the <a href="https://youtu.be/jVwdhdyMMyQ" target="_blank" style="color: var(--highlight);">first 2 seconds of the demo video</a>.</p>
+                        <p>Make sure you're logged into your Legacy Hockey page, but DO NOT be in edit mode. You can see this explained in the <a href="https://youtu.be/xvQQGjxoh2U" target="_blank" style="color: var(--highlight);">first 2 seconds of the demo video</a>.</p>
                     </div>
                 </div>
                 <div class="tip">
