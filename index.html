@@ -643,6 +643,34 @@
             color: var(--ice-blue);
         }
 
+        .cash-btn {
+            border: none;
+            cursor: pointer;
+            font-family: 'Source Sans 3', sans-serif;
+            transition: all 0.3s ease;
+        }
+
+        .cash-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .venmo-btn {
+            background: #008CFF;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .venmo-btn:hover {
+            background: #0074d9;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 140, 255, 0.3);
+        }
+
         .pricing-box .cta-btn {
             display: inline-block;
             background: var(--highlight);
@@ -1058,10 +1086,18 @@
                 <div class="price">$125</div>
                 <p class="price-detail">Full 2025-26 season including playoffs</p>
                 <div class="payment-methods">
-                    <span class="payment-method">💵 Cash (Mailed)</span>
-                    <span class="payment-method">📱 Venmo</span>
+                    <button onclick="openMailingModal()" class="payment-method cash-btn">
+                        💵 Cash (Mailed)
+                    </button>
+                    <a href="https://venmo.com/u/legacylinecharts" target="_blank" class="payment-method venmo-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
+                            <path d="M19.83 4.18c.72 1.22 1.17 2.87 1.17 5.02 0 6.26-5.33 14.37-9.7 14.37-1.8 0-3.33-1.66-3.33-4.18 0-5.02 2.52-12.23 2.52-12.23h4.53s-2.3 6.55-2.3 9.56c0 .92.23 1.35.69 1.35 1.38 0 4.84-5.94 4.84-10.87 0-1.89-.46-3.23-1.15-4.18L19.83 4.18z"/>
+                            <path d="M8.1 4.18L6.87 19.37H2.87L4.1 4.18H8.1z"/>
+                        </svg>
+                        Venmo
+                    </a>
                 </div>
-                <p style="color: var(--gray); font-size: 0.9rem;">No checks or credit cards</p>
+                <p style="color: var(--gray); font-size: 0.9rem;">No checks, "Straight cash, homie"</p>
                 <a href="#" onclick="openModal(); return false;" class="cta-btn">Get Started Today →</a>
             </div>
         </div>
@@ -1102,7 +1138,27 @@
             <div class="modal-note">
                 <strong>Include in your email:</strong><br>
                 • Your team name<br>
-                • Payment preference (Cash or Venmo)
+                • Payment preference: Cash (mailed) or <a href="https://venmo.com/u/legacylinecharts" target="_blank" style="color: #008CFF; text-decoration: underline;">Venmo</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mailing Address Modal -->
+    <div class="modal-overlay" id="mailingModal">
+        <div class="modal">
+            <button class="modal-close" onclick="closeMailingModal()">✕</button>
+            <h3>💵 Mail Your Payment</h3>
+            <p>Send cash to our mailing address:</p>
+            <div class="email-box">
+                <span class="email-address" style="font-size: 1.1rem; line-height: 1.6;">
+                    Legacy Line Charts<br>
+                    1507 5th Street SW<br>
+                    Delano, MN 55328
+                </span>
+            </div>
+            <button class="copy-btn" id="copyAddressBtn" onclick="copyAddress()">📋 Copy Address</button>
+            <div class="modal-note">
+                <strong>Remember:</strong> $125 for the full 2025-26 season including playoffs
             </div>
         </div>
     </div>
@@ -1133,6 +1189,31 @@
             });
         }
 
+        function openMailingModal() {
+            document.getElementById('mailingModal').classList.add('active');
+        }
+
+        function closeMailingModal() {
+            document.getElementById('mailingModal').classList.remove('active');
+            // Reset button text
+            const btn = document.getElementById('copyAddressBtn');
+            btn.textContent = '📋 Copy Address';
+            btn.classList.remove('copied');
+        }
+
+        function copyAddress() {
+            const address = "Legacy Line Charts\n1507 5th Street SW\nDelano, MN 55328";
+            navigator.clipboard.writeText(address).then(function() {
+                const btn = document.getElementById('copyAddressBtn');
+                btn.textContent = '✓ Copied!';
+                btn.classList.add('copied');
+                setTimeout(function() {
+                    btn.textContent = '📋 Copy Address';
+                    btn.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
         // Close modal when clicking outside
         document.getElementById('emailModal').addEventListener('click', function(e) {
             if (e.target === this) {
@@ -1140,10 +1221,17 @@
             }
         });
 
+        document.getElementById('mailingModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeMailingModal();
+            }
+        });
+
         // Close modal with Escape key
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeModal();
+                closeMailingModal();
             }
         });
     </script>
