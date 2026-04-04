@@ -971,7 +971,9 @@
                     <li>Toggle stats view: +/-, PIM, Blocked Shots & Faceoffs</li>
                 </ul>
             </div>
-            <div class="hero-price">$250</div>
+            <div style="text-align: center; width: 100%;">
+                <div class="hero-price">$250</div>
+            </div>
             <p class="hero-price-note">Preseason Special — Full season including playoffs</p>
             <p class="free-trial-hero">🏒 <strong>Try your first game FREE</strong> — no risk, just ask!</p>
             <a href="#" onclick="openModal(); return false;" class="hero-cta">Get Your Team Set Up →</a>
@@ -1152,7 +1154,7 @@
             <h3>📧 Contact Us</h3>
             <p>Copy our email address and send us a message!</p>
             <div class="email-box">
-                <span class="email-address" id="emailAddress"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7bbb2b0b6b4aebbbeb9b2b4bfb6a5a3a497b0bab6bebbf9b4b8ba">[email&#160;protected]</a></span>
+                <span class="email-address" id="emailAddress">legacylinecharts@gmail.com</span>
             </div>
             <button class="copy-btn" id="copyBtn" onclick="copyEmail()">📋 Copy Email Address</button>
             <div class="modal-note">
@@ -1163,8 +1165,7 @@
         </div>
     </div>
 
-    
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         function openModal() {
             document.getElementById('emailModal').classList.add('active');
         }
@@ -1178,7 +1179,7 @@
         }
 
         function copyEmail() {
-            const email = document.getElementById('emailAddress').textContent;
+            const email = 'legacylinecharts@gmail.com';
             navigator.clipboard.writeText(email).then(function() {
                 const btn = document.getElementById('copyBtn');
                 btn.textContent = '✓ Copied!';
@@ -1192,4 +1193,17 @@
 
         // Close modal when clicking outside
         document.getElementById('emailModal').addEventListener('click', function(e) {
-            if (e.target ==
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
