@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legacy Line Charts - NHL-Style Scouting Reports for MSHSL Coaches</title>
+    <title>Legacy Line Charts - NHL-Style Lines & Scouting Reports for MSHSL Coaches</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
@@ -169,8 +169,50 @@
         .hero-tagline {
             font-size: clamp(1.1rem, 2.5vw, 1.5rem);
             color: var(--ice-blue);
-            margin-bottom: 2.5rem;
+            margin-bottom: 1.5rem;
             font-weight: 400;
+        }
+
+        .new-features {
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid var(--accent-blue);
+            border-radius: 12px;
+            padding: 1.5rem 2rem;
+            margin-bottom: 2rem;
+            text-align: left;
+            display: inline-block;
+            max-width: 500px;
+        }
+
+        .features-header {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.2rem;
+            color: var(--highlight);
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .features-list li {
+            color: var(--ice-blue);
+            font-size: 1rem;
+            padding: 0.4rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--highlight);
+            font-weight: bold;
         }
 
         .hero-price {
@@ -194,7 +236,28 @@
         .hero-price-note {
             font-size: 1rem;
             color: var(--gray);
-            margin-bottom: 2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .free-trial-hero {
+            font-size: 1.2rem;
+            color: var(--highlight);
+            margin-bottom: 1.5rem;
+        }
+
+        .sample-preview {
+            margin-top: 1.5rem;
+        }
+
+        .sample-link {
+            color: var(--ice-blue);
+            font-size: 1rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .sample-link:hover {
+            color: var(--highlight);
         }
 
         .hero-cta {
@@ -643,18 +706,6 @@
             color: var(--ice-blue);
         }
 
-        .cash-btn {
-            border: none;
-            cursor: pointer;
-            font-family: 'Source Sans 3', sans-serif;
-            transition: all 0.3s ease;
-        }
-
-        .cash-btn:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-2px);
-        }
-
         .venmo-btn {
             background: #008CFF;
             color: white;
@@ -908,10 +959,27 @@
         <div class="hero-content">
             <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23e8f4fc'/%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='%234a90d9' stroke-width='1.5' opacity='0.6'/%3E%3Cellipse cx='50' cy='50' rx='35' ry='15' fill='none' stroke='%234a90d9' stroke-width='1.5' opacity='0.6'/%3E%3Cpath d='M20 35 Q50 20 80 35 L80 55 Q50 45 20 55 Z' fill='%231e3a5f'/%3E%3Cpath d='M25 40 Q50 28 75 40 L75 52 Q50 42 25 52 Z' fill='%232d5a87'/%3E%3Ccircle cx='50' cy='50' r='25' fill='none' stroke='%234a90d9' stroke-width='1.5' opacity='0.6'/%3E%3Cellipse cx='50' cy='50' rx='15' ry='35' fill='none' stroke='%234a90d9' stroke-width='1' opacity='0.4'/%3E%3C/svg%3E" alt="Legacy Line Charts" class="hero-logo">
             <h1>Legacy <span>Line Charts</span></h1>
-            <p class="hero-tagline">NHL-Style Scouting Reports Made Easy for MSHSL Coaches</p>
-            <div class="hero-price">$125</div>
-            <p class="hero-price-note">2025 Soft Launch Special — Full season including playoffs</p>
+            <p class="hero-tagline">NHL-Style Lines & Scouting Reports Made Easy for MSHSL Coaches</p>
+            <div class="new-features">
+                <p class="features-header">✨ New for 2026-27:</p>
+                <ul class="features-list">
+                    <li>Complete MSHSL logo database (all 142 teams)</li>
+                    <li>Enhanced scouting report layout</li>
+                    <li>Add junior & college logos for your elite players</li>
+                    <li>Easy export for social media</li>
+                    <li>Your team's career stats preloaded</li>
+                    <li>Toggle stats view: +/-, PIM, Blocked Shots & Faceoffs</li>
+                </ul>
+            </div>
+            <div class="hero-price">$250</div>
+            <p class="hero-price-note">Preseason Special — Full season including playoffs</p>
+            <p class="free-trial-hero">🏒 <strong>Try your first game FREE</strong> — no risk, just ask!</p>
             <a href="#" onclick="openModal(); return false;" class="hero-cta">Get Your Team Set Up →</a>
+            <div class="sample-preview">
+                <a href="https://drive.google.com/drive/folders/1l6j9Q60tR5nXds57k4-tpJeKOVnPj_Jl?usp=sharing" target="_blank" class="sample-link">
+                    📄 See a sample report →
+                </a>
+            </div>
         </div>
     </section>
 
@@ -923,16 +991,7 @@
             <div class="video-wrapper">
                 <iframe src="https://www.youtube.com/embed/xvQQGjxoh2U?rel=0&loop=1&playlist=xvQQGjxoh2U&autoplay=1&mute=1" title="Legacy Line Charts Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
-        </div>
-    </section>
-
-    <!-- Free Trial Offer -->
-    <section class="free-trial" style="background: linear-gradient(135deg, #1a472a 0%, #2d5a3d 100%); text-align: center; padding: 50px 2rem;">
-        <div class="container">
-            <h2 class="section-title" style="margin-bottom: 1rem;">🏒 Want Your First Game <span>Free?</span></h2>
-            <p style="font-size: 1.3rem; color: var(--ice-blue); max-width: 600px; margin: 0 auto;">
-                Just ask! We know coaches are trustworthy — they only leave if they get fired 😂
-            </p>
+            <p style="color: var(--gray); font-size: 0.9rem; margin-top: 1rem; text-align: center;">🔊 Click video to unmute</p>
         </div>
     </section>
 
@@ -945,7 +1004,7 @@
                 <div class="step">
                     <div class="step-number">1</div>
                     <h3>Contact Us</h3>
-                    <p>Email legacylinecharts@gmail.com with your team name and payment preference (mailed cash or Venmo)</p>
+                    <p>Email legacylinecharts@gmail.com with your team name and pay via <a href="https://venmo.com/u/legacylinecharts" target="_blank" style="color: var(--highlight);">Venmo</a></p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
@@ -1010,71 +1069,37 @@
                     <img src="https://cdn4.sportngin.com/attachments/team/984b-167624178/MoraLogo4_large_square.png" alt="Mora/Milaca Mustangs" class="team-logo">
                     <span class="team-name" style="color: #031790; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Mora/Milaca Mustangs</span>
                 </div>
+                <div class="team-card" style="border-color: #FFCC00; background: linear-gradient(135deg, rgba(0,0,59,0.3) 0%, rgba(255,204,0,0.2) 100%);">
+                    <img src="https://cdn3.sportngin.com/attachments/team/d0df-152162306/Mahtomedi-Zephyrs-Primary-M-Logo-1_large_square_large_square.png" alt="Mahtomedi Zephyrs" class="team-logo">
+                    <span class="team-name" style="color: #FFCC00;">Mahtomedi Zephyrs</span>
+                </div>
             </div>
             <p class="more-teams">+ More Teams Joining Each Day</p>
         </div>
     </section>
 
-    <!-- Requirements -->
+    <!-- Quick Setup -->
     <section class="requirements">
         <div class="container">
-            <h2 class="section-title">System <span>Requirements</span></h2>
-            <p class="section-subtitle">Simple setup — designed for coaches, not tech experts</p>
+            <h2 class="section-title">Quick <span>Setup</span></h2>
+            <p class="section-subtitle">You're 2 minutes away from game-ready reports</p>
             <div class="req-grid">
-                <div class="req-card important">
-                    <h4>Computer Required</h4>
-                    <p>Works on desktop or laptop computers. Does not work on tablets.</p>
+                <div class="req-card">
+                    <h4>✓ Use Your Laptop</h4>
+                    <p>Works best on Chrome or Edge on your computer — that's it!</p>
                 </div>
                 <div class="req-card">
-                    <h4>Google Chrome Recommended</h4>
-                    <p>Best performance and compatibility with Chrome browser.</p>
+                    <h4>✓ No Software to Install</h4>
+                    <p>100% web-based. Just log in and go.</p>
                 </div>
                 <div class="req-card">
-                    <h4>Legacy Hockey Account</h4>
-                    <p>Access to legacy.hockey for importing opponent data.</p>
-                </div>
-                <div class="req-card">
-                    <h4>Internet Connection</h4>
-                    <p>Web-based application — no software to install.</p>
+                    <h4>✓ Legacy Hockey Account</h4>
+                    <p>We pull opponent data right from legacy.hockey.</p>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <!-- Quick Tips -->
-    <section class="tips">
-        <div class="container">
-            <h2 class="section-title">Quick <span>Tips</span></h2>
-            <div class="tip-list">
-                <div class="tip">
-                    <div class="tip-icon">🔑</div>
-                    <div class="tip-content">
-                        <h4>Login to Legacy Hockey — But NOT in Edit Mode</h4>
-                        <p>Make sure you're logged into your Legacy Hockey page, but DO NOT be in edit mode. You can see this explained in the <a href="https://youtu.be/xvQQGjxoh2U" target="_blank" style="color: var(--highlight);">first 2 seconds of the demo video</a>.</p>
-                    </div>
-                </div>
-                <div class="tip">
-                    <div class="tip-icon">📋</div>
-                    <div class="tip-content">
-                        <h4>Work Left to Right</h4>
-                        <p>Complete the LLC buttons from left to right, starting with "Import Next Game Data" for the smoothest workflow.</p>
-                    </div>
-                </div>
-                <div class="tip">
-                    <div class="tip-icon">✂️</div>
-                    <div class="tip-content">
-                        <h4>Easy Logo Import</h4>
-                        <p>Opponent logos are easiest to add via screenshot. Use Snipping Tool to capture their logo from Legacy Hockey, then click "Paste from Clipboard."</p>
-                    </div>
-                </div>
-                <div class="tip">
-                    <div class="tip-icon">📄</div>
-                    <div class="tip-content">
-                        <h4>Print-Ready Output</h4>
-                        <p>Reports are designed to print perfectly on two pages — ready for your clipboard on game day.</p>
-                    </div>
-                </div>
-            </div>
+            <p style="color: var(--gray); font-size: 0.85rem; margin-top: 1.5rem; text-align: center;">
+                <em>Note: Best on desktop/laptop with Chrome or Edge. Safari and tablets not currently supported. <a href="https://support.google.com/chrome/answer/95346?hl=en&co=GENIE.Platform%3DDesktop" target="_blank" style="color: var(--highlight);">Download Chrome here</a>.</em>
+            </p>
         </div>
     </section>
 
@@ -1082,22 +1107,19 @@
     <section class="pricing-cta">
         <div class="container">
             <div class="pricing-box">
-                <h2>2025 Soft Launch Special</h2>
-                <div class="price">$125</div>
-                <p class="price-detail">Full 2025-26 season including playoffs</p>
+                <h2>Preseason Special</h2>
+                <div class="price">$250</div>
+                <p class="price-detail">Full 2026-27 season including playoffs</p>
                 <div class="payment-methods">
-                    <button onclick="openMailingModal()" class="payment-method cash-btn">
-                        💵 Cash (Mailed)
-                    </button>
                     <a href="https://venmo.com/u/legacylinecharts" target="_blank" class="payment-method venmo-btn">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="vertical-align: middle; margin-right: 6px;">
                             <path d="M19.83 4.18c.72 1.22 1.17 2.87 1.17 5.02 0 6.26-5.33 14.37-9.7 14.37-1.8 0-3.33-1.66-3.33-4.18 0-5.02 2.52-12.23 2.52-12.23h4.53s-2.3 6.55-2.3 9.56c0 .92.23 1.35.69 1.35 1.38 0 4.84-5.94 4.84-10.87 0-1.89-.46-3.23-1.15-4.18L19.83 4.18z"/>
                             <path d="M8.1 4.18L6.87 19.37H2.87L4.1 4.18H8.1z"/>
                         </svg>
-                        Venmo
+                        Pay with Venmo
                     </a>
                 </div>
-                <p style="color: var(--gray); font-size: 0.9rem;">No checks, "Straight cash, homie"</p>
+                <p style="color: var(--gray); font-size: 0.9rem;">Venmo payments only</p>
                 <a href="#" onclick="openModal(); return false;" class="cta-btn">Get Started Today →</a>
             </div>
         </div>
@@ -1110,17 +1132,15 @@
             <p class="footer-contact">
                 <a href="mailto:legacylinecharts@gmail.com">legacylinecharts@gmail.com</a>
             </p>
-            <p class="footer-address">
-                Legacy Line Charts<br>
-                1507 5th Street SW<br>
-                Delano, MN 55328
+            <p class="footer-credit" style="color: var(--gray); font-size: 0.9rem; margin-top: 1rem;">
+                LLC is developed and managed by <a href="https://www.eliteprospects.com/staff/7789/gerrit-van-bergen" target="_blank" style="color: var(--accent-blue);">Gerrit van Bergen</a> with the support of <a href="https://www.legacy.hockey/" target="_blank" style="color: var(--accent-blue);">Legacy Hockey</a>
             </p>
             <div class="visit-counter" style="margin-top: 1.5rem; padding: 1rem; background: rgba(255,255,255,0.05); border-radius: 8px; display: inline-block;">
                 <span style="color: var(--gray); font-size: 0.9rem;">Coaches who've checked us out: </span>
                 <img src="https://visitor-badge.laobi.icu/badge?page_id=legacylinecharts.github.io.homepage&left_color=%231E3A5F&right_color=%23FFD700&left_text=visits" alt="Visit Counter" style="vertical-align: middle;">
             </div>
             <p class="footer-copyright">
-                © 2025 Legacy Line Charts. All rights reserved.<br>
+                © 2026 Legacy Line Charts. All rights reserved.<br>
                 Designed for MSHSL hockey coaches.
             </p>
         </div>
@@ -1132,38 +1152,19 @@
             <h3>📧 Contact Us</h3>
             <p>Copy our email address and send us a message!</p>
             <div class="email-box">
-                <span class="email-address" id="emailAddress">legacylinecharts@gmail.com</span>
+                <span class="email-address" id="emailAddress"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d7bbb2b0b6b4aebbbeb9b2b4bfb6a5a3a497b0bab6bebbf9b4b8ba">[email&#160;protected]</a></span>
             </div>
             <button class="copy-btn" id="copyBtn" onclick="copyEmail()">📋 Copy Email Address</button>
             <div class="modal-note">
                 <strong>Include in your email:</strong><br>
                 • Your team name<br>
-                • Payment preference: Cash (mailed) or <a href="https://venmo.com/u/legacylinecharts" target="_blank" style="color: #008CFF; text-decoration: underline;">Venmo</a>
+                • Pay via <a href="https://venmo.com/u/legacylinecharts" target="_blank" style="color: #008CFF; text-decoration: underline;">Venmo</a>
             </div>
         </div>
     </div>
 
-    <!-- Mailing Address Modal -->
-    <div class="modal-overlay" id="mailingModal">
-        <div class="modal">
-            <button class="modal-close" onclick="closeMailingModal()">✕</button>
-            <h3>💵 Mail Your Payment</h3>
-            <p>Send cash to our mailing address:</p>
-            <div class="email-box">
-                <span class="email-address" style="font-size: 1.1rem; line-height: 1.6;">
-                    Legacy Line Charts<br>
-                    1507 5th Street SW<br>
-                    Delano, MN 55328
-                </span>
-            </div>
-            <button class="copy-btn" id="copyAddressBtn" onclick="copyAddress()">📋 Copy Address</button>
-            <div class="modal-note">
-                <strong>Remember:</strong> $125 for the full 2025-26 season including playoffs
-            </div>
-        </div>
-    </div>
-
-    <script>
+    
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         function openModal() {
             document.getElementById('emailModal').classList.add('active');
         }
@@ -1189,51 +1190,6 @@
             });
         }
 
-        function openMailingModal() {
-            document.getElementById('mailingModal').classList.add('active');
-        }
-
-        function closeMailingModal() {
-            document.getElementById('mailingModal').classList.remove('active');
-            // Reset button text
-            const btn = document.getElementById('copyAddressBtn');
-            btn.textContent = '📋 Copy Address';
-            btn.classList.remove('copied');
-        }
-
-        function copyAddress() {
-            const address = "Legacy Line Charts\n1507 5th Street SW\nDelano, MN 55328";
-            navigator.clipboard.writeText(address).then(function() {
-                const btn = document.getElementById('copyAddressBtn');
-                btn.textContent = '✓ Copied!';
-                btn.classList.add('copied');
-                setTimeout(function() {
-                    btn.textContent = '📋 Copy Address';
-                    btn.classList.remove('copied');
-                }, 2000);
-            });
-        }
-
         // Close modal when clicking outside
         document.getElementById('emailModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-        });
-
-        document.getElementById('mailingModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeMailingModal();
-            }
-        });
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-                closeMailingModal();
-            }
-        });
-    </script>
-</body>
-</html>
+            if (e.target ==
