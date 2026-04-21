@@ -599,6 +599,56 @@
             box-shadow: 0 4px 15px rgba(26, 115, 232, 0.3);
         }
 
+        /* How To Video Tutorials */
+        .how-to-videos {
+            background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark) 100%);
+        }
+
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .tutorial-video {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(74, 144, 217, 0.3);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .tutorial-video:hover {
+            border-color: var(--highlight);
+            box-shadow: 0 10px 40px rgba(255, 215, 0, 0.1);
+        }
+
+        .tutorial-video h4 {
+            color: var(--ice-blue);
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .tutorial-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+        }
+
+        .tutorial-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+        }
+
         /* Requirements */
         .requirements {
             background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark) 100%);
@@ -1122,6 +1172,34 @@
                 </div>
                 <p style="color: var(--gray); font-size: 0.9rem;">Venmo payments only</p>
                 <a href="#" onclick="openModal(); return false;" class="cta-btn">Get Started Today →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- How To: Legacy Line Charts -->
+    <section class="how-to-videos">
+        <div class="container">
+            <h2 class="section-title">How To: <span>Legacy Line Charts</span></h2>
+            <p class="section-subtitle">Quick tutorials to get you started</p>
+            <div class="video-grid">
+                <div class="tutorial-video">
+                    <h4>Import Next Game Data</h4>
+                    <div class="tutorial-wrapper">
+                        <iframe src="https://www.youtube.com/embed/09QYmSgpk-g?rel=0" title="LLC how to: Import Next Game Data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="tutorial-video">
+                    <h4>Pronunciations & Post HS Info</h4>
+                    <div class="tutorial-wrapper">
+                        <iframe src="https://www.youtube.com/embed/oSsV8MkrSMQ?rel=0" title="LLC how to: Pronunciations & Post HS Info" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="tutorial-video">
+                    <h4>Toggle Untracked Stats</h4>
+                    <div class="tutorial-wrapper">
+                        <iframe src="https://www.youtube.com/embed/d6jPkMP-PNo?rel=0" title="LLC how to: Toggle Untracked Stats" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
