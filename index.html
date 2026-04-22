@@ -642,6 +642,7 @@
             height: 0;
             overflow: hidden;
             border-radius: 8px;
+            cursor: pointer;
         }
 
         .tutorial-wrapper iframe {
@@ -651,6 +652,109 @@
             width: 100%;
             height: 100%;
             border-radius: 8px;
+        }
+
+        .tutorial-thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .tutorial-wrapper:hover .tutorial-thumbnail {
+            transform: scale(1.05);
+        }
+
+        .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 70px;
+            height: 70px;
+            background: rgba(255, 0, 0, 0.85);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .play-button::after {
+            content: '';
+            width: 0;
+            height: 0;
+            border-left: 24px solid white;
+            border-top: 14px solid transparent;
+            border-bottom: 14px solid transparent;
+            margin-left: 6px;
+        }
+
+        .tutorial-wrapper:hover .play-button {
+            background: rgba(255, 0, 0, 1);
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        /* Video Lightbox Modal */
+        .video-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .video-modal.active {
+            display: flex;
+        }
+
+        .video-modal-content {
+            position: relative;
+            width: 90%;
+            max-width: 1000px;
+            aspect-ratio: 16/9;
+            background: #000;
+            border-radius: 12px;
+            overflow: visible;
+        }
+
+        .video-modal-content iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        .video-modal-close {
+            position: absolute;
+            top: -50px;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 28px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .video-modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
 
         /* Requirements */
@@ -1059,9 +1163,9 @@
     <section class="video-section">
         <div class="container">
             <h2 class="section-title">See It <span>In Action</span></h2>
-            <p class="section-subtitle">Less than 90 seconds... Watch how easy it is to create professional scouting reports</p>
+            <p class="section-subtitle">Just 75 seconds... Watch how easy it is to create professional line charts with a scouting report</p>
             <div class="video-wrapper">
-                <iframe src="https://www.youtube.com/embed/xvQQGjxoh2U?rel=0&loop=1&playlist=xvQQGjxoh2U&autoplay=1&mute=1" title="Legacy Line Charts Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe src="https://www.youtube.com/embed/o9bYo9Lcj4k?rel=0&loop=1&playlist=o9bYo9Lcj4k&autoplay=1&mute=1" title="Legacy Line Charts Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <p style="color: var(--gray); font-size: 0.9rem; margin-top: 1rem; text-align: center;">🔊 Click video to unmute</p>
         </div>
@@ -1087,8 +1191,8 @@
     <section class="how-it-works">
         <div class="container">
             <h2 class="section-title">How It <span>Works</span></h2>
-            <p class="section-subtitle">Three simple steps to professional game-day reports</p>
-            <p style="text-align: center; margin-top: 0.5rem;"><a href="#tutorials" style="color: var(--highlight); font-size: 1rem;">📺 Tutorial How To Videos</a></p>
+            <p class="section-subtitle" style="margin-bottom: 0.25rem;">Three simple steps to professional game-day reports</p>
+            <p style="text-align: center; margin-top: 0;"><a href="#tutorials" style="color: var(--highlight); font-size: 1rem;">📺 Tutorial How To Videos</a></p>
             <div class="steps">
                 <div class="step">
                     <div class="step-number">1</div>
@@ -1188,33 +1292,52 @@
             <p class="section-subtitle">Quick tutorials to get you started</p>
             <div class="video-grid">
                 <div class="tutorial-video">
+                    <h4>Initial Game 1 Step by Step</h4>
+                    <div class="tutorial-wrapper" onclick="openVideoModal('5VF29gu2RKM')">
+                        <img src="https://img.youtube.com/vi/5VF29gu2RKM/maxresdefault.jpg" alt="Initial Game 1 Step by Step" class="tutorial-thumbnail">
+                        <div class="play-button"></div>
+                    </div>
+                </div>
+                <div class="tutorial-video">
+                    <h4>Lines in 75 seconds</h4>
+                    <div class="tutorial-wrapper" onclick="openVideoModal('o9bYo9Lcj4k')">
+                        <img src="https://img.youtube.com/vi/o9bYo9Lcj4k/maxresdefault.jpg" alt="Lines in 75 seconds" class="tutorial-thumbnail">
+                        <div class="play-button"></div>
+                    </div>
+                </div>
+                <div class="tutorial-video">
                     <h4>Import Next Game Data</h4>
-                    <div class="tutorial-wrapper">
-                        <iframe src="https://www.youtube.com/embed/09QYmSgpk-g?rel=0" title="LLC how to: Import Next Game Data" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="tutorial-wrapper" onclick="openVideoModal('09QYmSgpk-g')">
+                        <img src="https://img.youtube.com/vi/09QYmSgpk-g/maxresdefault.jpg" alt="Import Next Game Data" class="tutorial-thumbnail">
+                        <div class="play-button"></div>
                     </div>
                 </div>
                 <div class="tutorial-video">
                     <h4>Pronunciations & Post HS Info</h4>
-                    <div class="tutorial-wrapper">
-                        <iframe src="https://www.youtube.com/embed/oSsV8MkrSMQ?rel=0" title="LLC how to: Pronunciations & Post HS Info" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="tutorial-wrapper" onclick="openVideoModal('oSsV8MkrSMQ')">
+                        <img src="https://img.youtube.com/vi/oSsV8MkrSMQ/maxresdefault.jpg" alt="Pronunciations & Post HS Info" class="tutorial-thumbnail">
+                        <div class="play-button"></div>
                     </div>
                 </div>
                 <div class="tutorial-video">
                     <h4>Toggle Untracked Stats</h4>
-                    <div class="tutorial-wrapper">
-                        <iframe src="https://www.youtube.com/embed/d6jPkMP-PNo?rel=0" title="LLC how to: Toggle Untracked Stats" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="tutorial-wrapper" onclick="openVideoModal('d6jPkMP-PNo')">
+                        <img src="https://img.youtube.com/vi/d6jPkMP-PNo/maxresdefault.jpg" alt="Toggle Untracked Stats" class="tutorial-thumbnail">
+                        <div class="play-button"></div>
                     </div>
                 </div>
                 <div class="tutorial-video">
                     <h4>PDF & Image Production for Print or Social</h4>
-                    <div class="tutorial-wrapper">
-                        <iframe src="https://www.youtube.com/embed/lr55ZDInWBg?rel=0" title="LLC how to: PDF & Image Production for Print or Social" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="tutorial-wrapper" onclick="openVideoModal('lr55ZDInWBg')">
+                        <img src="https://img.youtube.com/vi/lr55ZDInWBg/maxresdefault.jpg" alt="PDF & Image Production for Print or Social" class="tutorial-thumbnail">
+                        <div class="play-button"></div>
                     </div>
                 </div>
                 <div class="tutorial-video">
                     <h4>Click Drop Your Roster</h4>
-                    <div class="tutorial-wrapper">
-                        <iframe src="https://www.youtube.com/embed/plSmH76ysGk?rel=0" title="LLC how to: Click Drop Your Roster" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="tutorial-wrapper" onclick="openVideoModal('plSmH76ysGk')">
+                        <img src="https://img.youtube.com/vi/plSmH76ysGk/maxresdefault.jpg" alt="Click Drop Your Roster" class="tutorial-thumbnail">
+                        <div class="play-button"></div>
                     </div>
                 </div>
             </div>
@@ -1258,6 +1381,14 @@
         </div>
     </div>
 
+    <!-- Video Lightbox Modal -->
+    <div class="video-modal" id="videoModal">
+        <div class="video-modal-content">
+            <button class="video-modal-close" onclick="closeVideoModal()">✕</button>
+            <iframe id="videoModalIframe" src="" title="Tutorial Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+    </div>
+
     <script>
         function openModal() {
             document.getElementById('emailModal').classList.add('active');
@@ -1295,6 +1426,31 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeModal();
+                closeVideoModal();
+            }
+        });
+
+        // Video Modal Functions
+        function openVideoModal(videoId) {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('videoModalIframe');
+            iframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeVideoModal() {
+            const modal = document.getElementById('videoModal');
+            const iframe = document.getElementById('videoModalIframe');
+            modal.classList.remove('active');
+            iframe.src = '';
+            document.body.style.overflow = '';
+        }
+
+        // Close video modal when clicking outside
+        document.getElementById('videoModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeVideoModal();
             }
         });
     </script>
