@@ -115,6 +115,37 @@
             transform: translateY(-2px);
         }
 
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px solid var(--highlight);
+            color: var(--highlight);
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--highlight);
+            color: var(--dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.4);
+        }
+
         /* Hero Section */
         .hero {
             min-height: 100vh;
@@ -1129,7 +1160,21 @@
                 <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='48' fill='%23e8f4fc'/%3E%3Ccircle cx='50' cy='50' r='35' fill='none' stroke='%234a90d9' stroke-width='1' opacity='0.5'/%3E%3Cellipse cx='50' cy='50' rx='35' ry='15' fill='none' stroke='%234a90d9' stroke-width='1' opacity='0.5'/%3E%3Cpath d='M20 35 Q50 20 80 35 L80 55 Q50 45 20 55 Z' fill='%231e3a5f'/%3E%3Cpath d='M25 40 Q50 28 75 40 L75 52 Q50 42 25 52 Z' fill='%232d5a87'/%3E%3Ccircle cx='50' cy='50' r='25' fill='none' stroke='%234a90d9' stroke-width='1' opacity='0.5'/%3E%3C/svg%3E" alt="Legacy Line Charts Logo">
                 <span>Legacy Line Charts</span>
             </div>
-            <a href="#" onclick="openModal(); return false;" class="nav-cta">Get Started</a>
+            <div class="nav-right">
+                <div class="social-icons">
+                    <a href="https://www.instagram.com/legacylinecharts/" target="_blank" class="social-icon" title="Follow us on Instagram">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                        </svg>
+                    </a>
+                    <a href="https://x.com/LegacyLineChart" target="_blank" class="social-icon" title="Follow us on X">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                        </svg>
+                    </a>
+                </div>
+                <a href="#" onclick="openModal(); return false;" class="nav-cta">Get Started</a>
+            </div>
         </div>
     </nav>
 
