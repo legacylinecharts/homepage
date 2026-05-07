@@ -569,8 +569,8 @@
 
         .team-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1.5rem;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 1rem;
             margin-top: 2rem;
         }
 
@@ -579,9 +579,9 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
-            gap: 10px;
-            padding: 1.2rem 1rem;
-            border-radius: 12px;
+            gap: 8px;
+            padding: 0.8rem 0.5rem;
+            border-radius: 10px;
             border: 2px solid;
             transition: all 0.3s ease;
         }
@@ -592,41 +592,29 @@
         }
 
         .team-logo {
-            width: 70px;
-            height: 70px;
+            width: 50px;
+            height: 50px;
             object-fit: contain;
-            border-radius: 8px;
+            border-radius: 6px;
             background: rgba(255, 255, 255, 0.9);
-            padding: 5px;
+            padding: 4px;
         }
 
-        .team-info {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .team-school {
+        .team-name {
             font-family: 'Oswald', sans-serif;
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: 600;
-        }
-
-        .team-mascot {
-            font-family: 'Oswald', sans-serif;
-            font-size: 0.9rem;
-            opacity: 0.85;
         }
 
         @media (max-width: 900px) {
             .team-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 500px) {
             .team-grid {
-                grid-template-columns: 1fr;
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
@@ -1316,88 +1304,68 @@
             <h2 class="section-title">Trusted By <span>MSHSL Programs</span></h2>
             <div class="team-grid">
                 <div class="team-card" style="border-color: #6600CC; background: linear-gradient(135deg, rgba(102,0,204,0.2) 0%, rgba(0,0,0,0.2) 100%);">
-                    <img src="https://cdn3.sportngin.com/attachments/team/e818-151725160/buffalo-bisons-hockey_large_square.png" alt="Buffalo Bison" class="team-logo">
-                    <div class="team-info">
-                        <span class="team-school" style="color: #6600CC; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Buffalo</span>
-                        <span class="team-mascot" style="color: #6600CC; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Bison</span>
-                    </div>
+                    <img src="https://cdn3.sportngin.com/attachments/team/6b78-151624918/1alexandria-cardinals-hockey_large_square.png" alt="Alexandria" class="team-logo">
+                    <span class="team-name" style="color: #B22222;">Alexandria</span>
+                </div>
+                <div class="team-card" style="border-color: #6600CC; background: linear-gradient(135deg, rgba(102,0,204,0.2) 0%, rgba(0,0,0,0.2) 100%);">
+                    <img src="https://cdn3.sportngin.com/attachments/team/e818-151725160/buffalo-bisons-hockey_large_square.png" alt="Buffalo" class="team-logo">
+                    <span class="team-name" style="color: #6600CC;">Buffalo</span>
                 </div>
                 <div class="team-card" style="border-color: #7B0484; background: linear-gradient(135deg, rgba(123,4,132,0.2) 0%, rgba(240,216,3,0.15) 100%);">
-                    <img src="https://cdn4.sportngin.com/attachments/team/cb7c-151927920/1cretin-derham-hall-hockey_large_square.png" alt="Cretin-Derham Hall Raiders" class="team-logo">
-                    <div class="team-info">
-                        <span class="team-school" style="color: #7B0484; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Cretin-Derham Hall</span>
-                        <span class="team-mascot" style="color: #7B0484; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Raiders</span>
-                    </div>
+                    <img src="https://cdn4.sportngin.com/attachments/team/cb7c-151927920/1cretin-derham-hall-hockey_large_square.png" alt="CDH" class="team-logo">
+                    <span class="team-name" style="color: #7B0484;">CDH</span>
                 </div>
                 <div class="team-card" style="border-color: #FC6418; background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(252,100,24,0.2) 100%);">
-                    <img src="https://cdn3.sportngin.com/attachments/team/5112-152073362/1delano-tigers-hockey_large_square_large_square.png" alt="Delano Tigers" class="team-logo">
-                    <div class="team-info">
-                        <span class="team-school" style="color: #FC6418;">Delano</span>
-                        <span class="team-mascot" style="color: #FC6418;">Tigers</span>
-                    </div>
+                    <img src="https://cdn3.sportngin.com/attachments/team/5112-152073362/1delano-tigers-hockey_large_square_large_square.png" alt="Delano" class="team-logo">
+                    <span class="team-name" style="color: #FC6418;">Delano</span>
                 </div>
                 <div class="team-card" style="border-color: #007800; background: linear-gradient(135deg, rgba(0,120,0,0.2) 0%, rgba(204,0,0,0.1) 100%);">
-                    <img src="https://cdn2.sportngin.com/attachments/team/e494-151779249/east-grand-forks-hockey_large_square.png" alt="East Grand Forks Green Wave" class="team-logo">
-                    <div class="team-info">
-                        <span class="team-school" style="color: #007800;">East Grand Forks</span>
-                        <span class="team-mascot" style="color: #007800;">Green Wave</span>
-                    </div>
+                    <img src="https://cdn2.sportngin.com/attachments/team/e494-151779249/east-grand-forks-hockey_large_square.png" alt="EGF" class="team-logo">
+                    <span class="team-name" style="color: #007800;">EGF</span>
                 </div>
                 <div class="team-card" style="border-color: #0139F0; background: linear-gradient(135deg, rgba(1,57,240,0.2) 0%, rgba(255,178,16,0.15) 100%);">
-                    <img src="https://cdn2.sportngin.com/attachments/team/3cfa-151937576/hastings-raiders-hockey-_1__large_square_large_square.png" alt="Hastings Raiders" class="team-logo">
-                    <div class="team-info">
-                        <span class="team-school" style="color: #0139F0;">Hastings</span>
-                        <span class="team-mascot" style="color: #0139F0;">Raiders</span>
-                    </div>
+                    <img src="https://cdn2.sportngin.com/attachments/team/3cfa-151937576/hastings-raiders-hockey-_1__large_square_large_square.png" alt="Hastings" class="team-logo">
+                    <span class="team-name" style="color: #0139F0;">Hastings</span>
                 </div>
-                <div class="team-card" style="border-color: #081B77; background: linear-gradient(135deg, rgba(8,27,119,0.3) 0%, rgba(247,205,37,0.15) 100%);">
-                    <img src="https://cdn1.sportngin.com/attachments/team/520f-151767468/hermantown-hawks-hockey_large_square.png" alt="Hermantown Hawks" class="team-logo">
-                    <div class="team-info">
-                        <span class="team-school" style="color: #F7CD25;">Hermantown</span>
-                        <span class="team-mascot" style="color: #F7CD25;">Hawks</span>
-                    </div>
+                <div class="team-card" style="border-color: #F7CD25; background: linear-gradient(135deg, rgba(8,27,119,0.3) 0%, rgba(247,205,37,0.15) 100%);">
+                    <img src="https://cdn1.sportngin.com/attachments/team/520f-151767468/hermantown-hawks-hockey_large_square.png" alt="Hermantown" class="team-logo">
+                    <span class="team-name" style="color: #F7CD25;">Hermantown</span>
+                </div>
+                <div class="team-card" style="border-color: #0000BA; background: linear-gradient(135deg, rgba(0,0,186,0.2) 0%, rgba(255,255,255,0.1) 100%);">
+                    <img src="https://cdn2.sportngin.com/attachments/team/5dca-151689530/holy-angels-stars-hockey-_1__large_square.png" alt="Holy Angels" class="team-logo">
+                    <span class="team-name" style="color: #0000BA; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Holy Angels</span>
+                </div>
+                <div class="team-card" style="border-color: #FFD700; background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(255,215,0,0.15) 100%);">
+                    <img src="https://cdn2.sportngin.com/attachments/team/a97c-150039767/MarshallLogo_large_square.png" alt="Marshall" class="team-logo">
+                    <span class="team-name" style="color: #FFD700;">Marshall</span>
                 </div>
                 <div class="team-card" style="border-color: #FFCC00; background: linear-gradient(135deg, rgba(0,0,59,0.3) 0%, rgba(255,204,0,0.2) 100%);">
-                    <img src="https://cdn3.sportngin.com/attachments/team/d0df-152162306/Mahtomedi-Zephyrs-Primary-M-Logo-1_large_square_large_square.png" alt="Mahtomedi Zephyrs" class="team-logo">
-                    <div class="team-info">
-                        <span class="team-school" style="color: #FFCC00;">Mahtomedi</span>
-                        <span class="team-mascot" style="color: #FFCC00;">Zephyrs</span>
-                    </div>
+                    <img src="https://cdn3.sportngin.com/attachments/team/d0df-152162306/Mahtomedi-Zephyrs-Primary-M-Logo-1_large_square_large_square.png" alt="Mahtomedi" class="team-logo">
+                    <span class="team-name" style="color: #FFCC00;">Mahtomedi</span>
                 </div>
                 <div class="team-card" style="border-color: #031790; background: linear-gradient(135deg, rgba(3,23,144,0.3) 0%, rgba(10,10,10,0.2) 100%);">
-                    <img src="https://cdn4.sportngin.com/attachments/team/984b-167624178/MoraLogo4_large_square.png" alt="Mora/Milaca Mustangs" class="team-logo">
-                    <div class="team-info">
-                        <span class="team-school" style="color: #031790; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Mora/Milaca</span>
-                        <span class="team-mascot" style="color: #031790; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Mustangs</span>
-                    </div>
+                    <img src="https://cdn4.sportngin.com/attachments/team/984b-167624178/MoraLogo4_large_square.png" alt="Mora" class="team-logo">
+                    <span class="team-name" style="color: #031790; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Mora</span>
                 </div>
                 <div class="team-card" style="border-color: #B21E23; background: linear-gradient(135deg, rgba(178,30,35,0.3) 0%, rgba(0,0,0,0.2) 100%);">
-                    <img src="https://cdn2.sportngin.com/attachments/team/a7b1-152073448/1new-prague-trojans-hockey_large_square_large_square.png" alt="New Prague Trojans" class="team-logo">
-                    <div class="team-info">
-                        <span class="team-school" style="color: #B21E23;">New Prague</span>
-                        <span class="team-mascot" style="color: #B21E23;">Trojans</span>
-                    </div>
+                    <img src="https://cdn2.sportngin.com/attachments/team/a7b1-152073448/1new-prague-trojans-hockey_large_square_large_square.png" alt="New Prague" class="team-logo">
+                    <span class="team-name" style="color: #B21E23;">New Prague</span>
                 </div>
                 <div class="team-card" style="border-color: #0519B0; background: linear-gradient(135deg, rgba(5,25,176,0.3) 0%, rgba(208,0,0,0.15) 100%);">
-                    <img src="https://cdn2.sportngin.com/attachments/team/0abe-151950248/1orono-spartans-hockey_large_square.png" alt="Orono Spartans" class="team-logo">
-                    <div class="team-info">
-                        <span class="team-school" style="color: #0519B0; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Orono</span>
-                        <span class="team-mascot" style="color: #0519B0; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Spartans</span>
-                    </div>
+                    <img src="https://cdn2.sportngin.com/attachments/team/0abe-151950248/1orono-spartans-hockey_large_square.png" alt="Orono" class="team-logo">
+                    <span class="team-name" style="color: #0519B0; text-shadow: 0 0 10px rgba(255,255,255,0.5);">Orono</span>
                 </div>
                 <div class="team-card" style="border-color: #FFCC00; background: linear-gradient(135deg, rgba(0,0,53,0.3) 0%, rgba(255,204,0,0.2) 100%);">
-                    <img src="https://cdn1.sportngin.com/attachments/team/0580-151943997/prior-lake-lakers-hockey-_1__large_square_large_square.png" alt="Prior Lake Lakers" class="team-logo">
-                    <div class="team-info">
-                        <span class="team-school" style="color: #FFCC00;">Prior Lake</span>
-                        <span class="team-mascot" style="color: #FFCC00;">Lakers</span>
-                    </div>
+                    <img src="https://cdn1.sportngin.com/attachments/team/0580-151943997/prior-lake-lakers-hockey-_1__large_square_large_square.png" alt="Prior Lake" class="team-logo">
+                    <span class="team-name" style="color: #FFCC00;">Prior Lake</span>
                 </div>
                 <div class="team-card" style="border-color: #00A302; background: linear-gradient(135deg, rgba(0,0,102,0.3) 0%, rgba(0,163,2,0.2) 100%);">
-                    <img src="https://cdn2.sportngin.com/attachments/team/f4a2-199862227/R-with-Stick-Logo_large_square.png" alt="Rosemount Irish" class="team-logo">
-                    <div class="team-info">
-                        <span class="team-school" style="color: #00A302;">Rosemount</span>
-                        <span class="team-mascot" style="color: #00A302;">Irish</span>
-                    </div>
+                    <img src="https://cdn2.sportngin.com/attachments/team/f4a2-199862227/R-with-Stick-Logo_large_square.png" alt="Rosemount" class="team-logo">
+                    <span class="team-name" style="color: #00A302;">Rosemount</span>
+                </div>
+                <div class="team-card" style="border-color: #C8102E; background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(200,16,46,0.2) 100%);">
+                    <img src="https://cdn1.sportngin.com/attachments/team/17de-151928095/0Pony__6__large_square.png" alt="Stillwater" class="team-logo">
+                    <span class="team-name" style="color: #C8102E;">Stillwater</span>
                 </div>
             </div>
             <p class="more-teams">+ More Teams Joining Each Day</p>
