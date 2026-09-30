@@ -1168,6 +1168,93 @@
                 gap: 0.8rem;
             }
         }
+
+        /* ===== SCROLL ANIMATIONS ===== */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Staggered animation for team cards */
+        .team-card {
+            opacity: 0;
+            transform: translateY(20px) scale(0.95);
+            transition: opacity 0.4s ease-out, transform 0.4s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .team-card.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Stagger delays for team cards (set via JS) */
+        .team-card:nth-child(1) { transition-delay: 0.05s; }
+        .team-card:nth-child(2) { transition-delay: 0.1s; }
+        .team-card:nth-child(3) { transition-delay: 0.15s; }
+        .team-card:nth-child(4) { transition-delay: 0.2s; }
+        .team-card:nth-child(5) { transition-delay: 0.25s; }
+        .team-card:nth-child(6) { transition-delay: 0.3s; }
+        .team-card:nth-child(7) { transition-delay: 0.35s; }
+        .team-card:nth-child(8) { transition-delay: 0.4s; }
+        .team-card:nth-child(9) { transition-delay: 0.45s; }
+        .team-card:nth-child(10) { transition-delay: 0.5s; }
+        .team-card:nth-child(11) { transition-delay: 0.55s; }
+        .team-card:nth-child(12) { transition-delay: 0.6s; }
+        .team-card:nth-child(n+13) { transition-delay: 0.65s; }
+
+        /* Step cards stagger */
+        .step {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out, border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .step.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .step:nth-child(1) { transition-delay: 0.1s; }
+        .step:nth-child(2) { transition-delay: 0.2s; }
+        .step:nth-child(3) { transition-delay: 0.3s; }
+
+        /* Sample cards stagger */
+        .sample-card {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out, box-shadow 0.3s ease;
+        }
+
+        .sample-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .sample-card:nth-child(1) { transition-delay: 0.1s; }
+        .sample-card:nth-child(2) { transition-delay: 0.2s; }
+
+        /* Tutorial videos stagger */
+        .tutorial-video {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+        }
+
+        .tutorial-video.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .tutorial-video:nth-child(1) { transition-delay: 0.1s; }
+        .tutorial-video:nth-child(2) { transition-delay: 0.2s; }
+        .tutorial-video:nth-child(3) { transition-delay: 0.3s; }
+        .tutorial-video:nth-child(4) { transition-delay: 0.4s; }
     </style>
 </head>
 <body>
@@ -1244,9 +1331,9 @@
     <!-- Video Demo Section -->
     <section class="video-section">
         <div class="container">
-            <h2 class="section-title">See It <span>In Action</span></h2>
-            <p class="section-subtitle">Just 75 seconds... Watch how easy it is to create professional line charts with a scouting report</p>
-            <div class="video-wrapper">
+            <h2 class="section-title fade-up">See It <span>In Action</span></h2>
+            <p class="section-subtitle fade-up">Just 75 seconds... Watch how easy it is to create professional line charts with a scouting report</p>
+            <div class="video-wrapper fade-up">
                 <iframe src="https://www.youtube.com/embed/o9bYo9Lcj4k?rel=0&loop=1&playlist=o9bYo9Lcj4k&autoplay=1&mute=1" title="Legacy Line Charts Demo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <p style="color: var(--gray); font-size: 0.9rem; margin-top: 1rem; text-align: center;">🔊 Click video to unmute</p>
@@ -1256,8 +1343,8 @@
     <!-- Sample Reports -->
     <section class="samples">
         <div class="container">
-            <h2 class="section-title">Sample <span>Reports</span></h2>
-            <p class="section-subtitle">Professional two-page scouting reports ready for game day</p>
+            <h2 class="section-title fade-up">Sample <span>Reports</span></h2>
+            <p class="section-subtitle fade-up">Professional two-page scouting reports ready for game day</p>
             <div style="text-align: center; margin-top: 2rem;">
                 <a href="https://drive.google.com/drive/folders/1l6j9Q60tR5nXds57k4-tpJeKOVnPj_Jl?usp=sharing" target="_blank" class="sample-drive-btn">
                     📁 View Sample Reports on Google Drive →
@@ -1272,8 +1359,8 @@
     <!-- How It Works -->
     <section class="how-it-works">
         <div class="container">
-            <h2 class="section-title">How It <span>Works</span></h2>
-            <p class="section-subtitle" style="margin-bottom: 0.25rem;">Three simple steps to professional game-day reports</p>
+            <h2 class="section-title fade-up">How It <span>Works</span></h2>
+            <p class="section-subtitle fade-up" style="margin-bottom: 0.25rem;">Three simple steps to professional game-day reports</p>
             <p style="text-align: center; margin-top: 0;"><a href="#tutorials" style="color: var(--highlight); font-size: 1rem;">📺 Tutorial How To Videos</a></p>
             <div class="steps">
                 <div class="step">
@@ -1301,7 +1388,7 @@
     <!-- Current Users -->
     <section class="users">
         <div class="container">
-            <h2 class="section-title">Trusted By <span>MSHSL Programs</span></h2>
+            <h2 class="section-title fade-up">Trusted By <span>MSHSL Programs</span></h2>
             <div class="team-grid">
                 <!-- 1. Alexandria (both dark: black/red) → white text with red glow -->
                 <div class="team-card" style="border-color: #CC0000; background: linear-gradient(135deg, rgba(204,0,0,0.2) 0%, rgba(0,0,0,0.2) 100%);">
@@ -1434,7 +1521,7 @@
                     <span class="team-name" style="color: #FECE3E; text-shadow: 0 0 10px #0B1881;">Thief River Falls</span>
                 </div>
             </div>
-            <p class="more-teams">+ More Teams Joining Each Day</p>
+            <p class="more-teams fade-up">+ More Teams Joining Each Day</p>
             <div style="margin-top: 2rem;">
                 <a href="https://g.page/r/CQTAOUKWKwxQEBM/review" target="_blank" class="google-review-btn">
                     ⭐ Using Legacy Line Charts? Leave us a Google Review!
@@ -1446,7 +1533,7 @@
     <!-- Pricing CTA -->
     <section class="pricing-cta">
         <div class="container">
-            <div class="pricing-box">
+            <div class="pricing-box fade-up">
                 <h2>Subscription Tiers</h2>
                 <div style="display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin: 1.5rem 0;">
                     <div style="background: rgba(255,215,0,0.15); border: 2px solid var(--highlight); border-radius: 10px; padding: 1rem 1.5rem; min-width: 140px;">
@@ -1484,8 +1571,8 @@
     <!-- How To: Legacy Line Charts -->
     <section class="how-to-videos" id="tutorials">
         <div class="container">
-            <h2 class="section-title">How To: <span>Legacy Line Charts</span></h2>
-            <p class="section-subtitle">Quick tutorials to get you started</p>
+            <h2 class="section-title fade-up">How To: <span>Legacy Line Charts</span></h2>
+            <p class="section-subtitle fade-up">Quick tutorials to get you started</p>
             <div class="video-grid">
                 <div class="tutorial-video">
                     <h4>Initial Game 1 Step by Step</h4>
@@ -1651,6 +1738,35 @@
             if (e.target === this) {
                 closeVideoModal();
             }
+        });
+
+        // ===== SCROLL ANIMATIONS =====
+        document.addEventListener('DOMContentLoaded', function() {
+            // Elements to animate on scroll
+            const animatedElements = document.querySelectorAll('.fade-up, .team-card, .step, .sample-card, .tutorial-video');
+
+            // Intersection Observer options
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px 0px -50px 0px',
+                threshold: 0.1
+            };
+
+            // Create observer
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Stop observing once animated
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all animated elements
+            animatedElements.forEach(function(el) {
+                observer.observe(el);
+            });
         });
     </script>
 </body>
