@@ -1255,6 +1255,121 @@
         .tutorial-video:nth-child(2) { transition-delay: 0.2s; }
         .tutorial-video:nth-child(3) { transition-delay: 0.3s; }
         .tutorial-video:nth-child(4) { transition-delay: 0.4s; }
+
+        /* Testimonials Section */
+        .testimonials {
+            background: linear-gradient(180deg, var(--primary-blue) 0%, var(--dark) 100%);
+            padding: 5rem 2rem;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .testimonial-card.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .testimonial-card:nth-child(1) { transition-delay: 0.1s; }
+        .testimonial-card:nth-child(2) { transition-delay: 0.25s; }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: var(--accent-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .reviewer-info {
+            flex: 1;
+        }
+
+        .reviewer-name {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--white);
+            margin-bottom: 0.15rem;
+        }
+
+        .reviewer-meta {
+            font-size: 0.85rem;
+            color: var(--gray);
+        }
+
+        .stars {
+            color: #FBBC04;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .testimonial-text p {
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .google-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: var(--gray);
+            margin-top: 2rem;
+        }
+
+        .google-badge svg {
+            width: 18px;
+            height: 18px;
+        }
     </style>
 </head>
 <body>
@@ -1328,6 +1443,64 @@
         </div>
     </section>
 
+    <!-- Testimonials -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title fade-up">What Coaches <span>Are Saying</span></h2>
+            <p class="section-subtitle fade-up">Real reviews from Minnesota high school hockey coaches</p>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="reviewer-avatar">A</div>
+                        <div class="reviewer-info">
+                            <div class="reviewer-name">Alex Rogosheske</div>
+                            <div class="reviewer-meta">5 months ago</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-text">
+                        <p>This tool is amazing and is a must have for any Minnesota High School Hockey Coach!! It takes me on average 1 hour to develop my game sheet (opposing team info) and our lineup (so in one year about 31 hours of my life) It is tedious, laborious and time consuming.</p>
+                        <p>Using this tool is simple, straightforward and takes maybe 5 minutes to generate what used to take a hour!! So lucky to get access to this giant time saver!!</p>
+                        <p>Legacy has also been awesome to work with and did a great job tailoring the sheets to meet my needs and wants. I am very excited to work with them this season and many seasons moving forward!</p>
+                    </div>
+                    <div class="google-badge">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                        </svg>
+                        Google Review
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="reviewer-avatar" style="background: #34A853;">D</div>
+                        <div class="reviewer-info">
+                            <div class="reviewer-name">Dustin Vogelgesang</div>
+                            <div class="reviewer-meta">5 months ago</div>
+                        </div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <div class="testimonial-text">
+                        <p>Easiest and best way to build a line chart for game days! I went from an hour to 5min tops, and with more information!</p>
+                    </div>
+                    <div class="google-badge">
+                        <svg viewBox="0 0 24 24" fill="none">
+                            <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+                            <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+                            <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+                            <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+                        </svg>
+                        Google Review
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Video Demo Section -->
     <section class="video-section">
         <div class="container">
@@ -1395,10 +1568,10 @@
                     <img src="https://cdn3.sportngin.com/attachments/team/6b78-151624918/1alexandria-cardinals-hockey_large_square.png" alt="Alexandria" class="team-logo">
                     <span class="team-name" style="color: #ffffff; text-shadow: 0 0 8px #CF2329, 0 0 15px #CF2329;">Alexandria</span>
                 </div>
-                <!-- 2. Apple Valley (both dark: maroon/tan) → white text with tan glow -->
+                <!-- 2. Apple Valley/Burnsville (both dark: maroon/tan) → white text with tan glow -->
                 <div class="team-card" style="border-color: #361E1F; background: linear-gradient(135deg, rgba(54,30,31,0.3) 0%, rgba(0,0,0,0.2) 100%);">
-                    <img src="https://cdn2.sportngin.com/attachments/team/c82a-151937882/Apple_Valley_large_square_large_square_large_square.png" alt="Apple Valley" class="team-logo">
-                    <span class="team-name" style="color: #ffffff; text-shadow: 0 0 8px #C0A686, 0 0 15px #C0A686;">Apple Valley</span>
+                    <img src="https://cdn2.sportngin.com/attachments/team/c82a-151937882/Apple_Valley_large_square_large_square_large_square.png" alt="Apple Valley/Burnsville" class="team-logo">
+                    <span class="team-name" style="color: #ffffff; text-shadow: 0 0 8px #C0A686, 0 0 15px #C0A686;">Apple Valley/Burnsville</span>
                 </div>
                 <!-- 3. Blaine (dark primary, bright secondary) → light blue text -->
                 <div class="team-card" style="border-color: #001A77; background: linear-gradient(135deg, rgba(0,26,119,0.3) 0%, rgba(0,0,0,0.2) 100%);">
@@ -1415,30 +1588,30 @@
                     <img src="https://cdn3.sportngin.com/attachments/team/ccff-196793539/BladesCircle2_FINAL-2_large_square.png" alt="Breck/Wahpeton" class="team-logo">
                     <span class="team-name" style="color: #ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.5);">Breck/Wahpeton</span>
                 </div>
-                <!-- 6. Buffalo (bright purple primary) → purple text -->
-                <div class="team-card" style="border-color: #6600CC; background: linear-gradient(135deg, rgba(102,0,204,0.2) 0%, rgba(0,0,0,0.2) 100%);">
-                    <img src="https://cdn3.sportngin.com/attachments/team/e818-151725160/buffalo-bisons-hockey_large_square.png" alt="Buffalo" class="team-logo">
-                    <span class="team-name" style="color: #9933FF; text-shadow: 0 0 10px #6600CC;">Buffalo</span>
-                </div>
-                <!-- 7. CDH (purple/yellow) → purple text with yellow glow -->
+                <!-- 6. CDH (purple/yellow) → purple text with yellow glow -->
                 <div class="team-card" style="border-color: #7B0484; background: linear-gradient(135deg, rgba(123,4,132,0.2) 0%, rgba(240,216,3,0.15) 100%);">
                     <img src="https://cdn4.sportngin.com/attachments/team/cb7c-151927920/1cretin-derham-hall-hockey_large_square.png" alt="CDH" class="team-logo">
                     <span class="team-name" style="color: #9B2D9F; text-shadow: 0 0 10px #F0D803, 0 0 20px #F0D803;">CDH</span>
                 </div>
-                <!-- 8. Delano (black/orange) → orange text -->
+                <!-- 7. Delano (black/orange) → orange text -->
                 <div class="team-card" style="border-color: #FC6418; background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(252,100,24,0.2) 100%);">
                     <img src="https://cdn3.sportngin.com/attachments/team/5112-152073362/1delano-tigers-hockey_large_square_large_square.png" alt="Delano" class="team-logo">
                     <span class="team-name" style="color: #FC6418; text-shadow: 0 0 10px #000000;">Delano</span>
                 </div>
-                <!-- 9. East Grand Forks (green/red) → green text -->
+                <!-- 8. East Grand Forks (green/red) → green text -->
                 <div class="team-card" style="border-color: #007800; background: linear-gradient(135deg, rgba(0,120,0,0.2) 0%, rgba(204,0,0,0.1) 100%);">
                     <img src="https://cdn2.sportngin.com/attachments/team/e494-151779249/east-grand-forks-hockey_large_square.png" alt="EGF" class="team-logo">
                     <span class="team-name" style="color: #00AA00; text-shadow: 0 0 10px #CC0000;">EGF</span>
                 </div>
-                <!-- 10. East Ridge (black/gold) → gold text -->
+                <!-- 9. East Ridge (black/gold) → gold text -->
                 <div class="team-card" style="border-color: #000000; background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(50,50,50,0.2) 100%);">
                     <img src="https://cdn1.sportngin.com/attachments/team/3d12-151942489/1east-ridge-raptors-hockey_large_square_large_square.png" alt="East Ridge" class="team-logo">
                     <span class="team-name" style="color: #C5B358; text-shadow: 0 0 10px #000000;">East Ridge</span>
+                </div>
+                <!-- 10. Forest Lake (dark maroon/gold) → gold text -->
+                <div class="team-card" style="border-color: #DABB3C; background: linear-gradient(135deg, rgba(97,19,17,0.3) 0%, rgba(218,187,60,0.15) 100%);">
+                    <img src="https://cdn4.sportngin.com/attachments/team/4b23-151942233/1forest-lake-rangers-hockey_large_square_large_square.png" alt="Forest Lake" class="team-logo">
+                    <span class="team-name" style="color: #DABB3C; text-shadow: 0 0 10px #611311;">Forest Lake</span>
                 </div>
                 <!-- 11. Gentry Academy (blue/yellow) → blue text with yellow glow -->
                 <div class="team-card" style="border-color: #0521F7; background: linear-gradient(135deg, rgba(5,33,247,0.2) 0%, rgba(242,250,5,0.15) 100%);">
@@ -1465,57 +1638,47 @@
                     <img src="https://cdn3.sportngin.com/attachments/team/d0df-152162306/Mahtomedi-Zephyrs-Primary-M-Logo-1_large_square_large_square.png" alt="Mahtomedi" class="team-logo">
                     <span class="team-name" style="color: #FFCC00; text-shadow: 0 0 10px #00003B;">Mahtomedi</span>
                 </div>
-                <!-- 16. Mankato West (red/white) → red text -->
-                <div class="team-card" style="border-color: #BD0000; background: linear-gradient(135deg, rgba(189,0,0,0.2) 0%, rgba(0,0,0,0.2) 100%);">
-                    <img src="https://cdn2.sportngin.com/attachments/team/928a-181704221/MankatoWestLogo-3_large_square.png" alt="Mankato West" class="team-logo">
-                    <span class="team-name" style="color: #DD2222; text-shadow: 0 0 10px #ffffff;">Mankato West</span>
-                </div>
-                <!-- 17. Marshall (orange) → orange text -->
+                <!-- 16. Marshall (orange) → orange text -->
                 <div class="team-card" style="border-color: #FF6600; background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(255,102,0,0.15) 100%);">
                     <img src="https://cdn2.sportngin.com/attachments/team/a97c-150039767/MarshallLogo_large_square.png" alt="Marshall" class="team-logo">
                     <span class="team-name" style="color: #FF6600; text-shadow: 0 0 10px #000000;">Marshall</span>
                 </div>
-                <!-- 18. Minneapolis (black/white) → white text -->
+                <!-- 17. Minneapolis (black/white) → white text -->
                 <div class="team-card" style="border-color: #0E0F0E; background: linear-gradient(135deg, rgba(14,15,14,0.3) 0%, rgba(50,50,50,0.2) 100%);">
                     <img src="https://cdn4.sportngin.com/attachments/team/78e4-151654134/1minneapolis-hockey_large_square.png" alt="Minneapolis" class="team-logo">
                     <span class="team-name" style="color: #ffffff; text-shadow: 0 0 8px rgba(255,255,255,0.5);">Minneapolis</span>
                 </div>
-                <!-- 19. Mora (both dark: blue/black) → white text with blue glow -->
+                <!-- 18. Mora/Milaca (both dark: blue/black) → white text with blue glow -->
                 <div class="team-card" style="border-color: #031790; background: linear-gradient(135deg, rgba(3,23,144,0.3) 0%, rgba(10,10,10,0.2) 100%);">
-                    <img src="https://cdn4.sportngin.com/attachments/team/984b-167624178/MoraLogo4_large_square.png" alt="Mora" class="team-logo">
-                    <span class="team-name" style="color: #ffffff; text-shadow: 0 0 8px #031790, 0 0 15px #031790;">Mora</span>
+                    <img src="https://cdn4.sportngin.com/attachments/team/984b-167624178/MoraLogo4_large_square.png" alt="Mora/Milaca" class="team-logo">
+                    <span class="team-name" style="color: #ffffff; text-shadow: 0 0 8px #031790, 0 0 15px #031790;">Mora/Milaca</span>
                 </div>
-                <!-- 20. New Prague (red/black) → red text -->
+                <!-- 19. New Prague (red/black) → red text -->
                 <div class="team-card" style="border-color: #B21E23; background: linear-gradient(135deg, rgba(178,30,35,0.3) 0%, rgba(0,0,0,0.2) 100%);">
                     <img src="https://cdn2.sportngin.com/attachments/team/a7b1-152073448/1new-prague-trojans-hockey_large_square_large_square.png" alt="New Prague" class="team-logo">
                     <span class="team-name" style="color: #D22228; text-shadow: 0 0 10px #000000;">New Prague</span>
                 </div>
-                <!-- 21. Prior Lake (dark blue/gold) → gold text -->
+                <!-- 20. Prior Lake (dark blue/gold) → gold text -->
                 <div class="team-card" style="border-color: #FFCC00; background: linear-gradient(135deg, rgba(0,0,53,0.3) 0%, rgba(255,204,0,0.2) 100%);">
                     <img src="https://cdn1.sportngin.com/attachments/team/0580-151943997/prior-lake-lakers-hockey-_1__large_square_large_square.png" alt="Prior Lake" class="team-logo">
                     <span class="team-name" style="color: #FFCC00; text-shadow: 0 0 10px #000035;">Prior Lake</span>
                 </div>
-                <!-- 22. Red Wing (purple/black) → purple text -->
+                <!-- 21. Red Wing (purple/black) → purple text -->
                 <div class="team-card" style="border-color: #811AD6; background: linear-gradient(135deg, rgba(129,26,214,0.2) 0%, rgba(0,0,0,0.2) 100%);">
                     <img src="https://cdn2.sportngin.com/attachments/team/78ee-149965836/red-wing-wingers-hockey_large_square.png" alt="Red Wing" class="team-logo">
                     <span class="team-name" style="color: #A040E0; text-shadow: 0 0 10px #000000;">Red Wing</span>
                 </div>
-                <!-- 23. Rosemount (dark blue/green) → green text -->
-                <div class="team-card" style="border-color: #00A302; background: linear-gradient(135deg, rgba(0,0,102,0.3) 0%, rgba(0,163,2,0.2) 100%);">
-                    <img src="https://cdn2.sportngin.com/attachments/team/f4a2-199862227/R-with-Stick-Logo_large_square.png" alt="Rosemount" class="team-logo">
-                    <span class="team-name" style="color: #00CC00; text-shadow: 0 0 10px #000066;">Rosemount</span>
-                </div>
-                <!-- 24. Southwest Christian (dark red/silver) → red text with silver glow -->
+                <!-- 22. Southwest Christian (dark red/silver) → red text with silver glow -->
                 <div class="team-card" style="border-color: #8A171B; background: linear-gradient(135deg, rgba(138,23,27,0.2) 0%, rgba(204,204,204,0.15) 100%);">
                     <img src="https://cdn3.sportngin.com/attachments/team/c8e8-182411031/SWChristianLogo3_large_square.png" alt="SW Christian" class="team-logo">
                     <span class="team-name" style="color: #B02020; text-shadow: 0 0 10px #CCCCCC, 0 0 20px #CCCCCC;">SW Christian</span>
                 </div>
-                <!-- 25. Stillwater (black/red) → red text -->
+                <!-- 23. Stillwater (black/red) → red text -->
                 <div class="team-card" style="border-color: #C8102E; background: linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(200,16,46,0.2) 100%);">
                     <img src="https://cdn1.sportngin.com/attachments/team/17de-151928095/0Pony__6__large_square.png" alt="Stillwater" class="team-logo">
                     <span class="team-name" style="color: #E02040; text-shadow: 0 0 10px #000000;">Stillwater</span>
                 </div>
-                <!-- 26. Thief River Falls (dark blue/gold) → gold text -->
+                <!-- 24. Thief River Falls (dark blue/gold) → gold text -->
                 <div class="team-card" style="border-color: #0B1881; background: linear-gradient(135deg, rgba(11,24,129,0.3) 0%, rgba(0,0,0,0.2) 100%);">
                     <img src="https://cdn4.sportngin.com/attachments/team/a6fa-151779472/thief-river-falls-prowlers-hockey_large_square.png" alt="Thief River Falls" class="team-logo">
                     <span class="team-name" style="color: #FECE3E; text-shadow: 0 0 10px #0B1881;">Thief River Falls</span>
